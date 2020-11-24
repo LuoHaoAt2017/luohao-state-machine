@@ -1,3 +1,5 @@
+参考文档：https://github.com/jakesgordon/javascript-state-machine
+
 以H2O为例
 
 定义状态

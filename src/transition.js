@@ -1,38 +1,38 @@
-module.exports = [
+export default [
     {
         name: 'melt',
-        from: '',
-        to: '',
-        condition: ''
+        from: 'solid',
+        to: 'liquid',
+        condition: temperature => temperature > 0
     },
     {
         name: 'evaporate',
-        from: '',
-        to: '',
-        condition: ''
+        from: 'liquid',
+        to: 'gas',
+        condition: temperature => temperature > 0
+    },
+    {
+        name: 'deliquesce',
+        from: 'gas',
+        to: 'liquid',
+        condition: () => true
+    },
+    {
+        name: 'freeze',
+        from: 'liquid',
+        to: 'solid',
+        condition: temperature => temperature < 0
+    },
+    {
+        name: 'sublime',
+        from: 'solid',
+        to: 'gas',
+        condition: () => true
     },
     {
         name: 'condense',
-        from: '',
-        to: '',
-        condition: ''
-    },
-    {
-        name: '',
-        from: '',
-        to: '',
-        condition: ''
-    },
-    {
-        name: '',
-        from: '',
-        to: '',
-        condition: ''
-    },
-    {
-        name: '',
-        from: '',
-        to: '',
+        from: 'gas',
+        to: 'solid',
         condition: ''
     }
 ];
