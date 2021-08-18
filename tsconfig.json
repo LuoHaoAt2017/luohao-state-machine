@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "esnext",
+    "strict": false,
+    "importHelpers": true,
+    "moduleResolution": "node",
+    "experimentalDecorators": true,
+    "strictFunctionTypes": false,
+    "esModuleInterop": true,
+    "allowJs": false,
+    "allowSyntheticDefaultImports": true,
+    "noImplicitAny": false,
+    "sourceMap": true,
+  },
+  "include": [
+    "src/**/*.ts",
+    "serve/**/*.ts"
+  ],
+  "exclude": [
+    "examples/**/*.js",
+    "libs/**/*.js",
+    "docs/**/*.js",
+    "mocks/**/*.js"
+  ]
+}

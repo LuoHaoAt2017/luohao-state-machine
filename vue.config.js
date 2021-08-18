@@ -6,10 +6,18 @@ module.exports = {
     port: 9000
   },
   configureWebpack: {
-    entry: './example/main.js',
+    entry: './example/index.js',
     output: {
       filename: '[name].bundle.js',
       path: path.resolve(__dirname, 'dist')
+    },
+    module: {
+      rules: [
+        {
+          test: /\.ts/,
+          loader: ['ts-loader']
+        }
+      ]
     },
     plugins: [
       new HtmlWebpackPlugin({
