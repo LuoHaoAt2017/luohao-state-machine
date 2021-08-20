@@ -1,12 +1,10 @@
 {
   "root": true,
-  "env": {
-    "node": true
-  },
   "extends": [
   ],
   "parserOptions": {
-    "parser": "babel-eslint"
+    "ecmaVersion": 6,
+    "sourceType": "module"
   },
   "rules": {
     "no-unused-vars": "off"
