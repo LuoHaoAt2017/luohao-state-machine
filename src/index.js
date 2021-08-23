@@ -1,24 +1,18 @@
-import * as Service from './service/index';
+import ControlTypes from '@/control/types';
+// import BaseControl from "@/control/base-control";
+// import FormTextbox from '@/control/form-control/form-textbox';
+import { factoryBuilder } from '@/control';
 
-function register(store, data, opts) {
-  const objectId = opts.objectId;
-  opts.updateView = function(mutation, playload) {
-    store.commit(`${objectId}/${mutation}`, playload);
-  }
-  const service = Service.newInstance(data, opts);
-  return service;
-}
+const formInstance = {};
+const updateView = () => {};
+const factory = factoryBuilder(formInstance, updateView);
 
-function restore() {
 
-}
+const control = factory({
+  Controlkey: ControlTypes.FormTextbox,
+  DataField: 'F00006',
+  DisplayRule: '1 > 2',
+  DisplayRuleFields: []
+}, {});
 
-function destory() {
-
-}
-
-export {
-  register, 
-  restore,
-  destory
-}
+console.log('control: ', control);

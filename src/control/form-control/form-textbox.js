@@ -11,8 +11,8 @@ FormTextbox.prototype.$emptyVal = function() {
 FormTextbox.prototype.$valueType = String;
 
 // 初始化控件的取值和赋值逻辑，若设置会覆盖默认的get和set。
-FormTextbox.prototype.$initValue = function() {
-  
+FormTextbox.prototype.$initValue = function(value) {
+  console.log(value);
 }
 // 在控件赋值时调用
 FormTextbox.prototype.$setValue = function(value) {

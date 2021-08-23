@@ -2,9 +2,9 @@ import { pubsubMixin } from '@/base/control/pub-sub';
 import { proxyMixin, initProxy } from '@/base/control/proxy';
 import { ruleMixin, initDisplayRule } from '@/base/control/rule';
 
-export function BaseControl(options, $data) {
-  this.controlKey = options.controlkey; // 控件的类型
-  this.dataField = options.dataField; // 控件的编号
+function BaseControl(options, $data) {
+  this.controlkey = options.Controlkey; // 控件的类型
+  this.dataField = options.DataField; // 控件的编号
   this.options = options;
   // 数据代理
   initProxy(this, $data);
@@ -23,3 +23,7 @@ proxyMixin(BaseControl);
 pubsubMixin(BaseControl);
 ruleMixin(BaseControl);
 // customEventMixin(BaseControl);
+
+export {
+  BaseControl
+}
