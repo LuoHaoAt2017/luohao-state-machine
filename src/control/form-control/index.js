@@ -2,7 +2,10 @@ import ControlTypes from '../types';
 
 function controlFactory(controlKey) {
   switch(controlKey) {
-    case ControlTypes.FormText: return require('./form-text').default;
+    case ControlTypes.FormTextBox: 
+      return require('./form-textbox').default;
+    case ControlTypes.FormNumber: 
+      return require('./form-number').default;
   }
 }
 

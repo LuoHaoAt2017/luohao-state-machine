@@ -1,3 +1,4 @@
 export default {
-  FormText: 'FormText'
+  FormTextBox: 'FormTextBox',
+  FormNumber: 'FormNumber'
 };

@@ -23,7 +23,9 @@ export function toArray(value) {
   return [value];
 }
 
-export const identity = args => args;
+export function identity(args) {
+  return args;
+};
 
 export const RuleType = {
   displayRule: 'displayRule',
