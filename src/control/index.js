@@ -4,10 +4,13 @@ import formControlFactory from './form-control';
 
 export function factoryBuilder(formInstance, updateView) {
 
-  BaseControl.prototype = {
-    formInstance: formInstance, 
-    updateView: updateView
+  function IBaseControl() {
   }
+
+  IBaseControl.prototype = Object.assign({
+    $formInstance: formInstance, 
+    $updateView: updateView
+  }, BaseControl.prototype);
 
   return function controlFactory(options, $data) {
     const TargetControl = formControlFactory(options.controlKey);
@@ -18,9 +21,9 @@ export function factoryBuilder(formInstance, updateView) {
       TargetControl.call(this, options, $data);
     }
 
-    const formControlProto = new BaseControl(options, $data);
-    Object.assign(formControlProto, TargetControl.prototype);
-    FormControl.prototype = formControlProto;
+    const controlProto = new IBaseControl();
+    Object.assign(controlProto, TargetControl.prototype);
+    FormControl.prototype = controlProto;
     return new FormControl();
   }
 }

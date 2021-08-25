@@ -2,8 +2,6 @@ import { Mutation } from '@/models/types';
 import { identity, isEmpty } from '@/utils';
 
 export function initProxy(control, $data) {
-  const value = $data.value;
-  console.log('$initValue: ', typeof control.$initValue);
   const result = control.$initValue();
   if (result instanceof Promise) {
     // 首先清空控件的值
