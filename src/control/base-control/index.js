@@ -3,14 +3,14 @@ import { proxyMixin, initProxy } from '@/base/control/proxy';
 import { ruleMixin, initDisplayRule } from '@/base/control/rule';
 
 function BaseControl(options, $data) {
-  this.controlkey = options.Controlkey; // 控件的类型
-  this.dataField = options.DataField; // 控件的编号
+  this.controlkey = options.controlkey; // 控件的类型
+  this.dataField = options.dataField; // 控件的编号
   this.options = options;
   // 数据代理
   initProxy(this, $data);
   // 可见性规则
-  if (options.Visible) {
-    initDisplayRule(this, options.DisplayRule, options.DisplayRuleFields);
+  if (options.visible) {
+    initDisplayRule(this, options.displayRule, options.displayRuleFields);
   } else {
     this.visible = false;
   }
