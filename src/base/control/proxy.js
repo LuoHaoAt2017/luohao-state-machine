@@ -3,7 +3,8 @@ import { identity, isEmpty } from '@/utils';
 
 export function initProxy(control, $data) {
   const value = $data.value;
-  const result = control.$initValue(value);
+  console.log('$initValue: ', typeof control.$initValue);
+  const result = control.$initValue();
   if (result instanceof Promise) {
     // 首先清空控件的值
     control.$updateView(Mutation.Set, {

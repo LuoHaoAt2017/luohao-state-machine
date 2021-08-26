@@ -1,4 +1,7 @@
-import * as Service from './service/index';
+import ControlTypes from '@/control/types';
+// import BaseControl from "@/control/base-control";
+// import FormTextbox from '@/control/form-control/form-textbox';
+import { factoryBuilder } from '@/control';
 
 function register(store, data, opts) {
   const objectId = opts.objectId;
@@ -8,16 +11,12 @@ function register(store, data, opts) {
   return Service.newInstance(data, opts);
 }
 
-function restore() {
 
-}
+const control = factory({
+  Controlkey: ControlTypes.FormTextbox,
+  DataField: 'F00006',
+  DisplayRule: '1 > 2',
+  DisplayRuleFields: []
+}, {});
 
-function destory() {
-
-}
-
-export {
-  register, 
-  restore,
-  destory
-}
+console.log('control: ', control);
