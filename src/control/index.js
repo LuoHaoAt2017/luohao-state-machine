@@ -5,8 +5,8 @@ import formControlFactory from './form-control';
 export function factoryBuilder(formInstance, updateView) {
 
   BaseControl.prototype = {
-    formInstance: formInstance, 
-    updateView: updateView
+    $form: formInstance, 
+    $updateView: updateView
   }
 
   return function controlFactory(options, $data) {

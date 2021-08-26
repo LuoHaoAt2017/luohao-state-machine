@@ -9,7 +9,7 @@ export function BaseControl(options, $data) {
   // 数据代理
   initProxy(this, $data);
   // 可见性规则
-  if (options.Visible) {
+  if (options.visible) {
     initDisplayRule(this, options.DisplayRule, options.DisplayRuleFields);
   } else {
     this.visible = false;

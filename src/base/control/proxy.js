@@ -79,7 +79,7 @@ function defineValueProp(control, $data) {
       }
       const result = this.$setValue(newVal);
       if (result instanceof Promise) {
-        const asyncId = this.$form.$hangupAsync();
+        // const asyncId = this.$form.$hangupAsync();
         result.then((response) => {
           this.$updateView(Mutation.Set, {
             dataField: this.dataField,
@@ -90,7 +90,7 @@ function defineValueProp(control, $data) {
         }).catch((err) => {
           console.log(err);
         }).finally(() => {
-          this.$form.$resolveAsync(asyncId);
+          // this.$form.$resolveAsync(asyncId);
         });
       } else {
         this.$updateView(Mutation.Set, {

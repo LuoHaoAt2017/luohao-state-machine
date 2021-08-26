@@ -5,8 +5,7 @@ function register(store, data, opts) {
   opts.updateView = function(mutation, playload) {
     store.commit(`${objectId}/${mutation}`, playload);
   }
-  const service = Service.newInstance(data, opts);
-  return service;
+  return Service.newInstance(data, opts);
 }
 
 function restore() {
