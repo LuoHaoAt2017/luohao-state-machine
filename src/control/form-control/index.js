@@ -1,10 +1,9 @@
-import ControlTypes from '../types';
 
 function controlFactory(controlKey) {
   switch(controlKey) {
-    case ControlTypes.FormTextBox: 
+    case 'FormTextbox': 
       return require('./form-textbox.js').default;
-    case ControlTypes.FormNumber: 
+    case 'FormNumber': 
       return require('./form-number.js').default;
   }
 }

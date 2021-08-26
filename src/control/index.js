@@ -1,24 +1,26 @@
 // 业务层控件类的实现
 import { BaseControl } from "./base-control";
-import formControlFactory from './form-control';
+import ControlFactory from './form-control';
 
 export function factoryBuilder(formInstance, updateView) {
 
-  BaseControl.prototype = {
-    $form: formInstance, 
-    $updateView: updateView
+  function IBaseControl() {
   }
 
-  return function controlFactory(options, $data) {
-    const TargetControl = formControlFactory(options.controlKey);
+  IBaseControl.prototype = Object.assign({
+    $form: formInstance, 
+    $updateView: updateView
+  }, BaseControl.prototype);
 
+  return function ImplControl({ opts, data }) {
+    const TargetControl = ControlFactory(opts.controlKey);
     function FormControl() {
       // 组合继承
-      BaseControl.call(this, options, $data);
-      TargetControl.call(this, options, $data);
+      BaseControl.call(this, opts, data);
+      TargetControl.call(this, opts, data);
     }
 
-    const formControlProto = new BaseControl(options, $data);
+    const formControlProto = new IBaseControl();
     Object.assign(formControlProto, TargetControl.prototype);
     FormControl.prototype = formControlProto;
     return new FormControl();
