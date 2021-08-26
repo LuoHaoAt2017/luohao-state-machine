@@ -12,6 +12,7 @@
     "babel-jest": "^27.0.6",
     "babel-loader": "^8.2.2",
     "eslint": "^7.32.0",
+    "husky": "^7.0.2",
     "jest": "^27.0.6",
     "mockjs": "^1.1.0",
     "ts-jest": "^27.0.5",
