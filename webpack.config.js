@@ -1,25 +1,49 @@
 const path = require('path');
-
+const { VueLoaderPlugin } = require('vue-loader');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 module.exports = {
-  mode: 'production',
-  entry: './src/index.js',
+  entry: {
+    index: './src/index.js',
+    logic: './app/index.js',
+  },
   output: {
-    filename: 'index.js',
+    filename: '[name].js',
     path: path.resolve(__dirname, 'dist')
   },
   module: {
     rules: [
       {
-        test: /\.js/,
+        test: /\.js$/,
         use: ['babel-loader'],
       },
       {
-        test: /\.ts/,
+        test: /\.ts$/,
         use: ['ts-loader'],
+      },
+      {
+        test: /\.vue$/,
+        use: ['vue-loader'],
+      },
+      {
+        test: /\.(css|less)$/,
+        use: ['vue-style-loader', 'css-loader', 'less-loader'],
+      },
+      {
+        test: /\.(png|svg|jpg)$/,
+        use: ['file-loader'],
       },
     ]
   },
   plugins: [
+    new HtmlWebpackPlugin({
+      template: path.resolve('./public/index.html'),
+      favicon: path.resolve('./public/favicon.ico'),
+      title: '表单设计器',
+      chunks: ['index', 'logic']
+    }),
+    new CleanWebpackPlugin(),
+    new VueLoaderPlugin()
   ],
   resolve: {
     alias: {
