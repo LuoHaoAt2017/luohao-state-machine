@@ -1,21 +1,23 @@
 <template>
   <div class="form-number">
     <slot name="prefix"></slot>
-    <a-input :value="tempValue" @change="onChange">
-    </a-input>
+    <a-input v-model="tempValue" @blur="onBlur"> </a-input>
     <slot name="suffix"></slot>
   </div>
 </template>
 <script>
-import Controller from '../controls/form-number';
+import Controller from "../controls/form-number";
 export default {
   extends: Controller,
   methods: {
-    onChange() {
-      
+    onBlur() {
+      this.value = this.format(this.tempValue);
+    },
+    format(value) {
+      return parseInt(value);
     }
-  }
-}
+  },
+};
 </script>
 <style lang="less" scoped>
 .form-number {

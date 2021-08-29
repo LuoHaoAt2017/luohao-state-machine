@@ -1,3 +1,4 @@
+import { Mutations } from '../store/types';
 
 export default {
   props: {
@@ -16,8 +17,13 @@ export default {
     }
   },
   computed: {
-    value() {
-      return this.control.value;
+    value: {
+      get() {
+        return this.control.value;
+      },
+      set(val) {
+        this.$store.commit(Mutations.Input, val);
+      }
     },
     field() {
       return this.control.field;

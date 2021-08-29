@@ -20,6 +20,9 @@ export default {
   },
   methods: {
     setTempValue(val) {
+      if (!val) {
+        this.tempValue = null;
+      }
       this.tempValue = val;
     }
   }
