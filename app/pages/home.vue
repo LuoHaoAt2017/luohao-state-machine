@@ -2,13 +2,13 @@
   <div class="home">
     <div class="actions">
       <vxe-button status="primary" circle @click="handleCreate">
-        <a-icon type="plus"/>
+        <a-icon type="plus" />
       </vxe-button>
       <vxe-button status="success" circle @click="handleReload">
-        <a-icon type="reload"/>
+        <a-icon type="reload" />
       </vxe-button>
       <vxe-button status="danger" circle @click="handleDelete">
-        <a-icon type="delete" @click="handleDelete"/>
+        <a-icon type="delete" @click="handleDelete" />
       </vxe-button>
     </div>
     <vxe-table
@@ -17,12 +17,27 @@
       row-id="objectId"
       :data="species"
       :tree-config="config"
-    ></vxe-table>
+    >
+    </vxe-table>
   </div>
 </template>
 <script>
 import Sortable from "sortablejs";
-import { OpenMode } from '../config/form';
+import moment from "moment";
+import { OpenMode } from "../config/form";
+import VXETable from "vxe-table";
+import Action from "./action.vue";
+VXETable.renderer.add("operation", {
+  renderDefault(h, opts, params) {
+    let { row, column } = params;
+    return h(Action, {
+      props: {
+        row,
+        column,
+      },
+    });
+  },
+});
 export default {
   name: "home",
   data() {
@@ -55,39 +70,76 @@ export default {
           headerAlign: "left",
           align: "left",
         },
+        {
+          field: "create",
+          title: "创建时间",
+          headerAlign: "left",
+          align: "left",
+        },
+        {
+          field: "update",
+          title: "修改时间",
+          headerAlign: "left",
+          align: "left",
+        },
+        {
+          field: "action",
+          title: "数据操作",
+          headerAlign: "left",
+          align: "left",
+          cellRender: {
+            name: "operation",
+          },
+        },
       ],
       species: [
         {
           label: "生物",
           objectId: "001",
+          create: moment().format("YYYY-MM-DD"),
+          update: moment().format("YYYY-MM-DD"),
           children: [
             {
               label: "动物",
               objectId: "0010",
+              create: moment().format("YYYY-MM-DD"),
+              update: moment().format("YYYY-MM-DD"),
               children: [
                 {
                   label: "无脊椎动物",
                   objectId: "00100",
+                  create: moment().format("YYYY-MM-DD"),
+                  update: moment().format("YYYY-MM-DD"),
                   children: [
                     {
                       label: "珊瑚",
                       objectId: "001000",
+                      create: moment().format("YYYY-MM-DD"),
+                      update: moment().format("YYYY-MM-DD"),
                     },
                     {
                       label: "软体动物",
                       objectId: "001001",
+                      create: moment().format("YYYY-MM-DD"),
+                      update: moment().format("YYYY-MM-DD"),
                     },
                     {
                       label: "三叶虫",
                       objectId: "001002",
+                      create: moment().format("YYYY-MM-DD"),
+                      update: moment().format("YYYY-MM-DD"),
                     },
                     {
                       label: "碗石动物",
                       objectId: "001003",
+                      create: moment().format("YYYY-MM-DD"),
+                      update: moment().format("YYYY-MM-DD"),
                     },
                     {
                       label: "笔石动物",
                       objectId: "001004",
+                      create: moment().format("YYYY-MM-DD"),
+                      update: moment().format("YYYY-MM-DD"),
                     },
                   ],
                 },
@@ -98,22 +150,32 @@ export default {
                     {
                       label: "鱼形动物",
                       objectId: "001010",
+                      create: moment().format("YYYY-MM-DD"),
+                      update: moment().format("YYYY-MM-DD"),
                     },
                     {
                       label: "两栖动物",
                       objectId: "001011",
+                      create: moment().format("YYYY-MM-DD"),
+                      update: moment().format("YYYY-MM-DD"),
                     },
                     {
                       label: "爬行动物",
                       objectId: "001012",
+                      create: moment().format("YYYY-MM-DD"),
+                      update: moment().format("YYYY-MM-DD"),
                     },
                     {
                       label: "鸟类",
                       objectId: "001013",
+                      create: moment().format("YYYY-MM-DD"),
+                      update: moment().format("YYYY-MM-DD"),
                     },
                     {
                       label: "哺乳类",
                       objectId: "001014",
+                      create: moment().format("YYYY-MM-DD"),
+                      update: moment().format("YYYY-MM-DD"),
                     },
                   ],
                 },
@@ -122,48 +184,70 @@ export default {
             {
               label: "植物",
               objectId: "0011",
+              create: moment().format("YYYY-MM-DD"),
+              update: moment().format("YYYY-MM-DD"),
               children: [
                 {
                   label: "苔藓植物",
                   objectId: "00110",
+                  create: moment().format("YYYY-MM-DD"),
+                  update: moment().format("YYYY-MM-DD"),
                 },
                 {
                   label: "蕨类植物",
                   objectId: "00111",
+                  create: moment().format("YYYY-MM-DD"),
+                  update: moment().format("YYYY-MM-DD"),
                 },
                 {
                   label: "裸子植物",
                   objectId: "00112",
+                  create: moment().format("YYYY-MM-DD"),
+                  update: moment().format("YYYY-MM-DD"),
                 },
                 {
                   label: "被子植物",
                   objectId: "00113",
+                  create: moment().format("YYYY-MM-DD"),
+                  update: moment().format("YYYY-MM-DD"),
                 },
               ],
             },
             {
               label: "微生物",
               objectId: "0012",
+              create: moment().format("YYYY-MM-DD"),
+              update: moment().format("YYYY-MM-DD"),
               children: [
                 {
                   label: "有孔虫",
                   objectId: "00120",
+                  create: moment().format("YYYY-MM-DD"),
+                  update: moment().format("YYYY-MM-DD"),
                 },
                 {
                   label: "放射虫",
                   objectId: "00121",
+                  create: moment().format("YYYY-MM-DD"),
+                  update: moment().format("YYYY-MM-DD"),
                 },
                 {
                   label: "介形虫",
                   objectId: "00122",
+                  create: moment().format("YYYY-MM-DD"),
+                  update: moment().format("YYYY-MM-DD"),
                 },
                 {
                   label: "牙形虫",
                   objectId: "00123",
+                  create: moment().format("YYYY-MM-DD"),
+                  update: moment().format("YYYY-MM-DD"),
                 },
                 {
                   label: "孢子花粉",
                   objectId: "00124",
+                  create: moment().format("YYYY-MM-DD"),
+                  update: moment().format("YYYY-MM-DD"),
                 },
               ],
             },
@@ -172,14 +256,20 @@ export default {
         {
           label: "地质",
           objectId: "002",
+          create: moment().format("YYYY-MM-DD"),
+          update: moment().format("YYYY-MM-DD"),
         },
         {
           label: "气候",
           objectId: "003",
+          create: moment().format("YYYY-MM-DD"),
+          update: moment().format("YYYY-MM-DD"),
         },
         {
           label: "陨石",
           objectId: "004",
+          create: moment().format("YYYY-MM-DD"),
+          update: moment().format("YYYY-MM-DD"),
         },
       ],
     };
@@ -237,25 +327,21 @@ export default {
       }
     },
     handleCreate() {
-      const appCode = '';    //应用
-      const schemaCode = ''; // 表单
-      const objectId = '';   // 数据
+      const appCode = ""; //应用
+      const schemaCode = ""; // 表单
+      const objectId = ""; // 数据
       window.openFormDetail({
         appCode: appCode,
         schemaCode: schemaCode,
         objectId: objectId,
         openMode: OpenMode.Modal,
         callback: () => {
-          console.log('关闭时的回调');
-        }
+          console.log("关闭时的回调");
+        },
       });
     },
-    handleReload() {
-
-    },
-    handleDelete() {
-
-    }
+    handleReload() {},
+    handleDelete() {},
   },
 };
 </script>
