@@ -47,7 +47,11 @@ module.exports = {
   ],
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, 'src')
+      '@': path.resolve(__dirname, 'src'),
+      'app': path.resolve(__dirname, './app'),
+      'form-detail': path.resolve(__dirname, './modules/form-detail'),
+      'form-designer': path.resolve(__dirname, './modules/form-designer'),
+      'workflow-designer': path.resolve(__dirname, './modules/workflow-designer')
     },
   },
 }
