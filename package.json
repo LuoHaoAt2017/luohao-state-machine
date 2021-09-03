@@ -6,7 +6,7 @@
     "build": "webpack --progress --config ./webpack.config.prod.js",
     "start": "webpack-dev-server --config ./webpack.config.dev.js",
     "test": "jest --color --watch",
-    "serve": "nodemon"
+    "serve": "nodemon server/app.js"
   },
   "devDependencies": {
     "@babel/core": "^7.15.0",
@@ -37,9 +37,13 @@
   },
   "dependencies": {
     "ant-design-vue": "^1.7.8",
+    "body-parser": "^1.19.0",
     "express": "^4.17.1",
+    "js-cookie": "^3.0.1",
     "lodash": "^4.17.21",
     "moment": "^2.29.1",
+    "mysql2": "^2.3.0",
+    "sequelize": "^6.6.5",
     "sortablejs": "^1.14.0",
     "vue": "^2.6.14",
     "vue-router": "^3.5.2",
