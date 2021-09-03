@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Drawer from '../drawer.vue';
 import Modal from '../modal.vue';
-import { OpenMode } from 'app/config/form';
+import { OpenMode } from 'client/config/form';
 
 function openFormDetail({
   appCode,

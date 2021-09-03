@@ -1,7 +1,7 @@
 
 <script>
 import ControlAdapter from "./adapter-control.vue";
-import store from "app/store/index";
+import store from "client/store/index";
 import { ControlType } from '../config/form-control-type';
 import { register } from "@/index";
 import { LoadForm } from "form-detail/apis/";

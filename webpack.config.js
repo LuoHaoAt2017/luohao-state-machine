@@ -5,7 +5,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 module.exports = {
   entry: {
     index: './src/index.js',
-    logic: './app/index.js',
+    client: './client/index.js',
   },
   output: {
     filename: '[name].js',
@@ -48,7 +48,7 @@ module.exports = {
   resolve: {
     alias: {
       '@': path.resolve(__dirname, 'src'),
-      'app': path.resolve(__dirname, './app'),
+      'client': path.resolve(__dirname, './client'),
       'form-detail': path.resolve(__dirname, './modules/form-detail'),
       'form-designer': path.resolve(__dirname, './modules/form-designer'),
       'workflow-designer': path.resolve(__dirname, './modules/workflow-designer')
