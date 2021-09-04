@@ -5,7 +5,7 @@ module.exports = function(sequelize, Sequelize) {
     static associate(models) {
       Schema.belongsTo(models.Application, {
         foreignKey: 'app_code',
-        as: 'Application'
+        as: 'application'
       });
 
       Schema.hasMany(models.Control);

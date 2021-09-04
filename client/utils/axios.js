@@ -3,9 +3,9 @@ import axios from 'axios';
 const instance = axios.create({
   baseURL: 'http://localhost:8088/',
   timeout: 1000,
-  headers: {
-    'Content-Type': 'application/json'
-  }
+  // headers: {
+  //   'Content-Type': 'application/x-www-form-urlencoded'
+  // }
 });
 
 instance.interceptors.request.use(function(request) {

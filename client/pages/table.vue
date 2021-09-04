@@ -8,7 +8,7 @@
         mode="inline"
         @click="handleClick"
       >
-        <a-sub-menu key="sub1" title="应用名称">
+        <a-sub-menu :key="app.app_code" :title="app.app_name">
           <a-menu-item key="1">表单名称</a-menu-item>
           <a-menu-item key="2">表单名称</a-menu-item>
         </a-sub-menu>
@@ -78,6 +78,7 @@ export default {
   },
   data() {
     return {
+      app: {},
       visible: false,
       current: ["mail"],
       openKeys: ["sub1"],
@@ -314,6 +315,11 @@ export default {
       ],
     };
   },
+  beforeRouteEnter(to, from, next) {
+    next((vm) => {
+      vm.loadAppInfo(to.params.code);
+    });
+  },
   mounted() {
     this.loadCols();
     this.sortable();
@@ -397,6 +403,19 @@ export default {
     },
     handleReload() {},
     handleDelete() {},
+    loadAppInfo(code) {
+      this.$axios.request({
+        url: '/api/application',
+        method: 'get',
+        params: {
+          app_code: code
+        }
+      }).then((res) => {
+        this.app = res.data;
+      }).catch((err) => {
+
+      });
+    }
   },
 };
 </script>

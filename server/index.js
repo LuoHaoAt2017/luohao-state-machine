@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const router = require('./routes');
 
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.all("*", function(req, res, next) {
@@ -15,7 +15,7 @@ app.all("*", function(req, res, next) {
 app.use(router);
 
 app.use(function(req, res) {
-  res.status(404).send({ error: 'Not found' });
+  res.status(404).send({ error: 'Route Not found' });
 });
 
 app.listen(8088, 'localhost', () => {

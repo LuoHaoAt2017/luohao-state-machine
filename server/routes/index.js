@@ -9,13 +9,8 @@ const application = require('../controllers/application');
 // const score = require('../controllers/score');
 // const circle = require('../controllers/circle');
 
-// 再次进行权限验证
-router.all('*', function(req, res, next) {
-  next();
-});
-
 router.put('/api/application', application.create);
-router.delete('/api/application', application.delete);
+router.delete('/api/application', application.remove);
 router.post('/api/application', application.update);
 router.get('/api/application', application.search);
 

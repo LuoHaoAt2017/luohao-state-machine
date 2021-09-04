@@ -3,7 +3,9 @@ const { Model } = require('sequelize');
 module.exports = function(sequelize, Sequelize) {
   class Application extends Model {
     static associate(models) {
-      Application.hasMany(models.Schema);
+      Application.hasMany(models.Schema, {
+        as: 'schemas'
+      });
     }
   }
 

@@ -5,7 +5,6 @@ module.exports = function(sequelize, Sequelize) {
     static associate(models) {
       Control.belongsTo(models.Schema, {
         foreignKey: 'schema_code',
-        as: 'Schema'
       });
     }
   }

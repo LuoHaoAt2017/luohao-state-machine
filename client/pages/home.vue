@@ -10,7 +10,7 @@
           :header="app.app_name"
           v-for="app in app_list"
         >
-          <a-icon slot="extra" type="setting" @click.stop="gotoApp(app)" />
+          <a-icon slot="extra" type="info-circle" @click.stop="gotoApp(app)" />
           <p>{{ app.app_info }}</p>
         </a-collapse-panel>
       </a-collapse>
@@ -23,7 +23,7 @@
     </main>
     <a-modal
       title="新建应用"
-      width="80%"
+      width="600px"
       :visible="visible"
       @ok="handleOk"
       @cancel="handleCancel"
@@ -141,7 +141,6 @@ export default {
 <style lang="less">
 .home {
   height: 100%;
-  width: 600px;
   margin: 0 auto;
   header {
     width: 100%;
@@ -159,7 +158,7 @@ export default {
     margin-bottom: 36px;
   }
   .empty {
-    width: 600px;
+    width: 100%;
     height: 100%;
     display: flex;
     justify-content: center;
@@ -177,10 +176,8 @@ export default {
   .plus-app {
     position: fixed;
     height: 36px;
-    width: 600px;
+    width: 100%;
     bottom: 0;
-    left: 50%;
-    margin-left: -300px;
   }
 }
 </style>
