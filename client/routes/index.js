@@ -11,6 +11,10 @@ export default new VueRouter({
       component: () => import('../pages/home.vue')
     },
     {
+      path: '/table',
+      component: () => import('../pages/table.vue')
+    },
+    {
       path: '/',
       redirect: '/home'
     }

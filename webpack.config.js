@@ -40,7 +40,7 @@ module.exports = {
       template: path.resolve('./public/index.html'),
       favicon: path.resolve('./public/favicon.ico'),
       title: '表单设计器',
-      chunks: ['index', 'logic']
+      chunks: ['index', 'client']
     }),
     new CleanWebpackPlugin(),
     new VueLoaderPlugin()

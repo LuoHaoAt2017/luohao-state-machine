@@ -30,9 +30,9 @@ fs.readdirSync(__dirname).filter((file) => {
   models[model.name] = model;
 });
 
-Object.keys(models).forEach(modelName => {
-  if (models[modelName].associate) {
-    models[modelName].associate(models);
+Object.keys(models).forEach(name => {
+  if (models[name].associate) {
+    models[name].associate(models);
   }
 });
 
