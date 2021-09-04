@@ -10,7 +10,7 @@ import { throttle } from 'lodash';
 import 'vxe-table/lib/style.css';
 import axios from './utils/axios';
 import openFormDetail from 'form-detail/config';
-import './mocks/index';
+// import './mocks/index';
 Vue.prototype.$axios = axios;
 Vue.prototype.$bus = new Vue();
 Vue.use(Antd);
