@@ -1,6 +1,14 @@
 <template>
   <div class="table">
     <section class="left">
+      <a-button-group class="home">
+        <a-button icon="home" size="large" @click="navigateTo('home')">
+          首页
+        </a-button>
+        <a-button icon="plus" size="large" @click="navigateTo('plus')">
+          新增表单
+        </a-button>
+      </a-button-group>
       <a-menu
         style="width: 256px"
         :default-selected-keys="['1']"
@@ -13,9 +21,6 @@
           <a-menu-item key="2">表单名称</a-menu-item>
         </a-sub-menu>
       </a-menu>
-      <a-button class="plus-schema" @click="showModal">
-        <a-icon type="plus" />
-      </a-button>
     </section>
     <section class="right">
       <div class="actions">
@@ -74,6 +79,7 @@ export default {
     AMenu: Menu,
     AMenuItem: Menu.Item,
     AButton: Button,
+    AButtonGroup: Button.Group,
     AModal: Modal,
   },
   data() {
@@ -404,17 +410,27 @@ export default {
     handleReload() {},
     handleDelete() {},
     loadAppInfo(code) {
-      this.$axios.request({
-        url: '/api/application',
-        method: 'get',
-        params: {
-          app_code: code
-        }
-      }).then((res) => {
-        this.app = res.data;
-      }).catch((err) => {
-
-      });
+      this.$axios
+        .request({
+          url: "/api/application",
+          method: "get",
+          params: {
+            app_code: code,
+          },
+        })
+        .then((res) => {
+          this.app = res.data;
+        })
+        .catch((err) => {});
+    },
+    navigateTo(opt) {
+      if (opt === 'home') {
+        this.$router.push({
+          name: 'home'
+        });
+      } else if (opt === 'plus') {
+        window.location.href = 'http://localhost:9090/form-designer.html'
+      }
     }
   },
 };
@@ -426,9 +442,12 @@ export default {
   .ant-menu {
     height: calc(100% - 48px);
   }
-  .plus-schema {
+  .home {
     height: 48px;
     width: 256px;
+    display: flex;
+    align-items: center;
+    padding: 0 12px;
   }
   .vxe-body--column.col--seq {
     cursor: move;
@@ -442,6 +461,7 @@ export default {
   }
   .left {
     width: 256px;
+    border-right: 1px solid #eee;
   }
   .right {
     width: calc(100% - 256px);
