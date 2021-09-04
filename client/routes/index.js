@@ -8,10 +8,12 @@ export default new VueRouter({
   routes: [
     {
       path: '/home',
+      name: 'home',
       component: () => import('../pages/home.vue')
     },
     {
       path: '/table',
+      name: 'tableview',
       component: () => import('../pages/table.vue')
     },
     {

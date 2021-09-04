@@ -1,15 +1,22 @@
 <template>
   <div class="home">
+    <header>
+      氚云表单系统
+    </header>
     <main>
-      <a-collapse v-model="activeKey">
+      <a-collapse v-if="app_list.length" v-model="activeKey" :accordion="true">
         <a-collapse-panel
           :key="app.app_code"
           :header="app.app_name"
           v-for="app in app_list"
         >
+          <a-icon slot="extra" type="setting" @click.stop="gotoApp(app)" />
           <p>{{ app.app_info }}</p>
         </a-collapse-panel>
       </a-collapse>
+      <div v-else class="empty">
+        <img :src="icons[0].src" :alt="icons[0].alt">
+      </div>
       <a-button class="plus-app" @click="showModal">
         <a-icon type="plus" />
       </a-button>
@@ -62,6 +69,12 @@ export default {
       app_list: [],
       app_name: "",
       app_info: "",
+      icons: [
+        {
+          src: require('../assets/svg/empty.svg').default,
+          alt: 'empty'
+        }
+      ]
     };
   },
   mounted() {
@@ -70,6 +83,14 @@ export default {
   methods: {
     showModal() {
       this.visible = true;
+    },
+    gotoApp(app) {
+      this.$router.push({
+        name: "tableview",
+        params: {
+          code: app.app_code,
+        },
+      });
     },
     handleOk(e) {
       this.visible = false;
@@ -120,10 +141,34 @@ export default {
 <style lang="less">
 .home {
   height: 100%;
+  width: 600px;
+  margin: 0 auto;
+  header {
+    width: 100%;
+    height: 48px;
+    line-height: 48px;
+    text-align: center;
+    font-size: 24px;
+  }
   main {
+    width: 100%;
+    height: calc(100% - 48px - 36px);
+    margin: 0 auto;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 36px;
+  }
+  .empty {
     width: 600px;
     height: 100%;
-    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    img {
+      margin: 0 auto;
+      width: 400px;
+      height: 400px;
+    }
   }
 }
 </style>
