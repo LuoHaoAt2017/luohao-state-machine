@@ -85,6 +85,7 @@ export default {
   data() {
     return {
       app: {},
+      app_code: '',
       visible: false,
       current: ["mail"],
       openKeys: ["sub1"],
@@ -410,6 +411,7 @@ export default {
     handleReload() {},
     handleDelete() {},
     loadAppInfo(code) {
+      this.app_code = code;
       this.$axios
         .request({
           url: "/api/application",
@@ -429,7 +431,9 @@ export default {
           name: 'home'
         });
       } else if (opt === 'plus') {
-        window.location.href = 'http://localhost:9090/form-designer.html'
+        const code = this.app_code;
+        // window.replace(`http://localhost:9090/form-designer.html#/?app_code=${code}`);
+        window.location.href = `http://localhost:9090/form-designer.html#/?app_code=${code}`
       }
     }
   },

@@ -2,7 +2,6 @@ const Application = require('../models/index').Application;
 // const sequelize = require('../models/index').sequelize;
 
 async function search(req, res) {
-  console.log('query: ', req.query);
   if (req.query.app_code) {
     return findOne(req, res);
   }

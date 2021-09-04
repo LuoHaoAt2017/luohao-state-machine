@@ -1,7 +1,7 @@
 <script>
 import FormNumber from './controls/form-number.vue';
 import FormTextbox from './controls/form-textbox.vue';
-import { ControlType } from '../config/form-control-type';
+import { ControlType } from 'client/typings/form-control-type';
 export default {
   name: 'AdapterControl',
   components: {

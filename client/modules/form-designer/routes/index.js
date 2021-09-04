@@ -7,13 +7,9 @@ export default new VueRouter({
   mode: 'hash',
   routes: [
     {
-      path: '/home',
+      path: '/',
       name: 'home',
       component: () => import('../pages/home.vue')
     },
-    {
-      path: '/',
-      redirect: '/home'
-    }
   ]
 });
