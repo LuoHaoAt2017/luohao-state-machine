@@ -324,7 +324,7 @@ export default {
   },
   beforeRouteEnter(to, from, next) {
     next((vm) => {
-      vm.loadAppInfo(to.params.code);
+      vm.loadAppInfo(to.query.app_code);
     });
   },
   mounted() {
@@ -410,14 +410,14 @@ export default {
     },
     handleReload() {},
     handleDelete() {},
-    loadAppInfo(code) {
-      this.app_code = code;
+    loadAppInfo(app_code) {
+      this.app_code = app_code;
       this.$axios
         .request({
           url: "/api/application",
           method: "get",
           params: {
-            app_code: code,
+            app_code: app_code,
           },
         })
         .then((res) => {

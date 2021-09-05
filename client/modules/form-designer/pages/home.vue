@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <header>
-      <a-button type="danger" icon="rollback">返回</a-button>
+      <a-button type="danger" icon="rollback" @click="goBack">返回</a-button>
       <h2>表单设计器</h2>
       <a-button type="primary" icon="save">保存</a-button>
     </header>
@@ -173,6 +173,10 @@ export default {
     onDelete() {},
     onCopy() {},
     onChange() {},
+    goBack() {
+      const app_code = this.app_code;
+      window.location.href = `${window.origin}/index.html#/table?app_code=${app_code}`
+    }
   },
 };
 </script>

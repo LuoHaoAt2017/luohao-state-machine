@@ -87,8 +87,8 @@ export default {
     gotoApp(app) {
       this.$router.push({
         name: "tableview",
-        params: {
-          code: app.app_code,
+        query: {
+          app_code: app.app_code,
         },
       });
     },
