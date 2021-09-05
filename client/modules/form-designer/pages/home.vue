@@ -1,39 +1,46 @@
 <template>
   <div class="container">
-    <ul id="controlItem" class="control-items">
-      <li>
-        <a-icon
-          type="plus-circle"
-          class="plus-circle"
-          @click="handlePlus('form_textbox')"
-        />
-        文本输入框
-      </li>
-      <li>
-        <a-icon
-          type="plus-circle"
-          class="plus-circle"
-          @click="handlePlus('form_number')"
-        />
-        数字输入框
-      </li>
-      <li>
-        <a-icon
-          type="plus-circle"
-          class="plus-circle"
-          @click="handlePlus('form_select')"
-        />
-        下拉输入框
-      </li>
-    </ul>
+    <div class="control-items">
+      <h3>基础控件</h3>
+      <ul id="controlItem">
+        <li>
+          <a-icon
+            type="plus-circle"
+            class="plus-circle"
+            @click="handlePlus('form_textbox')"
+          />
+          文本输入框
+        </li>
+        <li>
+          <a-icon
+            type="plus-circle"
+            class="plus-circle"
+            @click="handlePlus('form_number')"
+          />
+          数字输入框
+        </li>
+        <li>
+          <a-icon
+            type="plus-circle"
+            class="plus-circle"
+            @click="handlePlus('form_select')"
+          />
+          下拉输入框
+        </li>
+      </ul>
+    </div>
     <div class="form-controls">
-      <div class="form-save">
+      <div class="form-actions">
         <a-button type="primary">保存</a-button>
       </div>
       <ul id="formControl" class="control-list">
-        <li v-for="item of controls" :key="item.control_code">
-          <control-adapter :control="item"></control-adapter>
-        </li>
+        <control-adapter
+          v-for="item of controls"
+          :key="item.control_code"
+          :control="item"
+          @delete="onDelete"
+          @copy="onCopy"
+        ></control-adapter>
       </ul>
     </div>
   </div>
@@ -83,26 +90,26 @@ export default {
     //   },
     //   sort: false, // 列表单元不可以在列表容器内进行拖拽排序；
     // });
-    // new Sortable(document.querySelector("#formControl"), {
-    //   group: {
-    //     name: "shared",
-    //     pull: false,
-    //     put: true,
-    //   },
-    //   sort: true,
-    //   onMove() {
-    //   },
-    //   onAdd(evt) {
-    //     const clone = evt.clone;
-    //     console.log('evt: ', evt);
-    //   },
-    //   onClone(evt) {
-    //   },
-    //   onEnd(evt) {
-    //     console.log('from: ', evt.from);
-    //     console.log('to: ', evt.to);
-    //   },
-    // });
+    new Sortable(document.querySelector("#formControl"), {
+      // group: {
+      //   name: "shared",
+      //   pull: false,
+      //   put: true,
+      // },
+      handle: ".adapter-control",
+      ghostClass: ".control-ghost",
+      sort: true,
+      onMove() {},
+      onAdd(evt) {
+        const clone = evt.clone;
+        console.log("evt: ", evt);
+      },
+      onClone(evt) {},
+      onEnd(evt) {
+        console.log("from: ", evt.from);
+        console.log("to: ", evt.to);
+      },
+    });
   },
   methods: {
     getAppCode() {
@@ -135,6 +142,8 @@ export default {
       this.total = this.total + 1;
       return "F0000" + this.total;
     },
+    onDelete() {},
+    onCopy() {},
   },
 };
 </script>
@@ -150,17 +159,35 @@ export default {
     width: 320px;
     height: 100%;
     border-right: 1px solid #eee;
+    h3 {
+      height: 54px;
+      line-height: 54px;
+      padding-left: 12px;
+      margin: 0;
+      border-bottom: 1px solid #eee;
+    }
+    li {
+      border-bottom: 1px solid #eee;
+      height: 42px;
+      line-height: 42px;
+      padding-left: 8px;
+    }
   }
   .form-controls {
     width: 100%;
     height: 100%;
     .control-list {
       padding: 10px;
+      li {
+        margin-top: 15px;
+      }
     }
-    .form-save {
+    .form-actions {
       display: flex;
       justify-content: flex-end;
-      padding: 5px 10px;
+      align-items: center;
+      height: 54px;
+      padding: 0 10px;
       border-bottom: 1px solid #eee;
     }
   }
@@ -172,13 +199,5 @@ li {
 }
 li {
   list-style: none;
-  height: 36px;
-  line-height: 36px;
-  padding-left: 8px;
-  // cursor: grab;
-  .plus-circle {
-    cursor: pointer;
-    margin-right: 8px;
-  }
 }
 </style>

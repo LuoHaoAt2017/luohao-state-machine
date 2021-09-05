@@ -21,6 +21,7 @@ export default {
   .ant-select-disabled {
     .ant-select-selection {
       background-color: #fff;
+      cursor: grab;
     }
   }
 }

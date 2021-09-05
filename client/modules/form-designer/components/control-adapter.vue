@@ -20,7 +20,7 @@ export default {
   render(h) {
     switch (this.control.control_type) {
       case ControlType.FormTextbox:
-        return h('div', {
+        return h('li', {
           staticClass: "adapter-control",
         }, [h(ControlTitle, {
           props: {
@@ -30,7 +30,7 @@ export default {
           staticClass: 'control-value'
         })]);
       case ControlType.FormNumber:
-        return h('div', {
+        return h('li', {
           staticClass: "adapter-control",
         }, [h(ControlTitle, {
           props: {
@@ -40,7 +40,7 @@ export default {
           staticClass: 'control-value'
         })]);
       case ControlType.FormSelect:
-        return h('div', {
+        return h('li', {
           staticClass: "adapter-control",
         }, [h(ControlTitle, {
           props: {
@@ -50,7 +50,7 @@ export default {
           staticClass: 'control-value'
         })]);
       default:
-        h("div", {
+        h("li", {
           staticClass: "adapter-control",
         });
     }
@@ -60,8 +60,10 @@ export default {
 <style lang="less" scoped>
 .adapter-control {
   width: 100%;
-  margin-bottom: 10px;
-  display: flex;
-  align-items: center;
+  position: relative;
+  cursor: grab;
+}
+.control-ghost {
+  box-shadow: 0 0 2px 2px #ccc;
 }
 </style>

@@ -16,6 +16,11 @@ export default {
   .ant-input-number {
     width: 100% !important;
     background: #fff;
+    &.ant-input-number-disabled {
+      .ant-input-number-input {
+        cursor: grab;
+      }
+    }
   }
   label {
     white-space: nowrap;

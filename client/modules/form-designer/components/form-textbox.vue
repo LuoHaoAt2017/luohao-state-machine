@@ -15,6 +15,7 @@ export default {
   }
   .ant-input[disabled] {
     background-color: #fff;
+    cursor: grab;
   }
 }
 </style>
