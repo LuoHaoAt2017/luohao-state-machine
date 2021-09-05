@@ -1,48 +1,52 @@
 <template>
-  <div class="container">
-    <div class="control-items">
-      <h3>基础控件</h3>
-      <ul id="controlItem">
-        <li>
-          <a-icon
-            type="plus-circle"
-            class="plus-circle"
-            @click="handlePlus('form_textbox')"
-          />
-          文本输入框
-        </li>
-        <li>
-          <a-icon
-            type="plus-circle"
-            class="plus-circle"
-            @click="handlePlus('form_number')"
-          />
-          数字输入框
-        </li>
-        <li>
-          <a-icon
-            type="plus-circle"
-            class="plus-circle"
-            @click="handlePlus('form_select')"
-          />
-          下拉输入框
-        </li>
-      </ul>
-    </div>
-    <div class="form-controls">
-      <div class="form-actions">
-        <a-button type="primary">保存</a-button>
+  <div class="home">
+    <header>
+      <a-button type="danger" icon="rollback">返回</a-button>
+      <h2>表单设计器</h2>
+      <a-button type="primary" icon="save">保存</a-button>
+    </header>
+    <body class="container">
+      <div class="control-items">
+        <h3>基础控件</h3>
+        <ul id="controlItem">
+          <li>
+            <a-icon
+              type="plus-circle"
+              class="plus-circle"
+              @click="handlePlus('form_textbox')"
+            />
+            文本输入框
+          </li>
+          <li>
+            <a-icon
+              type="plus-circle"
+              class="plus-circle"
+              @click="handlePlus('form_number')"
+            />
+            数字输入框
+          </li>
+          <li>
+            <a-icon
+              type="plus-circle"
+              class="plus-circle"
+              @click="handlePlus('form_select')"
+            />
+            下拉输入框
+          </li>
+        </ul>
       </div>
-      <ul id="formControl" class="control-list">
-        <control-adapter
-          v-for="item of controls"
-          :key="item.control_code"
-          :control="item"
-          @delete="onDelete"
-          @copy="onCopy"
-        ></control-adapter>
-      </ul>
-    </div>
+      <div class="form-controls">
+        <ul id="formControl" class="control-list">
+          <control-adapter
+            v-for="item of controls"
+            :key="item.control_code"
+            :control="item"
+            @delete="onDelete"
+            @copy="onCopy"
+          ></control-adapter>
+        </ul>
+      </div>
+    </body>
   </div>
 </template>
 <script>
@@ -147,48 +151,60 @@ export default {
   },
 };
 </script>
-<style lang="less">
-.home {
-}
-</style>
 <style lang="less" scoped>
-.container {
-  display: flex;
+.home {
   height: 100%;
-  .control-items {
-    width: 320px;
-    height: 100%;
-    border-right: 1px solid #eee;
-    h3 {
-      height: 54px;
-      line-height: 54px;
-      padding-left: 12px;
+  box-sizing: border-box;
+  header {
+    height: 54px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 16px;
+    h2 {
       margin: 0;
-      border-bottom: 1px solid #eee;
-    }
-    li {
-      border-bottom: 1px solid #eee;
-      height: 42px;
-      line-height: 42px;
-      padding-left: 8px;
     }
   }
-  .form-controls {
-    width: 100%;
-    height: 100%;
-    .control-list {
-      padding: 10px;
+  body {
+    display: flex;
+    height: calc(100% - 54px);
+    border: 1px solid #eee;
+    .control-items {
+      width: 320px;
+      height: 100%;
+      border-right: 1px solid #eee;
+      h3 {
+        height: 54px;
+        line-height: 54px;
+        padding-left: 12px;
+        margin: 0;
+        border-bottom: 1px solid #eee;
+      }
       li {
-        margin-top: 15px;
+        border-bottom: 1px solid #eee;
+        height: 42px;
+        line-height: 42px;
+        padding-left: 8px;
       }
     }
-    .form-actions {
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
-      height: 54px;
-      padding: 0 10px;
-      border-bottom: 1px solid #eee;
+    .form-controls {
+      width: 100%;
+      height: 100%;
+      padding: 0 12px;
+      .control-list {
+        padding: 10px;
+        li {
+          margin-top: 15px;
+        }
+      }
+      .form-actions {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        height: 54px;
+        padding: 0 10px;
+        border-bottom: 1px solid #eee;
+      }
     }
   }
 }
