@@ -4,8 +4,8 @@
       {{ control.display_name }}
     </div>
     <div class="control-action">
-      <a-icon type="copy" />
-      <a-icon type="delete" />
+      <a-icon type="copy" @click="handleCopy"/>
+      <a-icon type="delete" @click="handleDelete"/>
     </div>
   </div>
 </template>
@@ -19,6 +19,12 @@ export default {
   created() {},
   mounted() {},
   methods: {
+    handleCopy() {
+      this.$emit('copy', this.control);
+    },
+    handleDelete() {
+      this.$emit('delete', this.control); 
+    }
   },
 };
 </script>

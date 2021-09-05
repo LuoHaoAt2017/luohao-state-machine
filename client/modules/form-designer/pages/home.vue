@@ -13,7 +13,7 @@
             <a-icon
               type="plus-circle"
               class="plus-circle"
-              @click="handlePlus('form_textbox')"
+              @click="handleAdd(ControlType.FormTextbox)"
             />
             文本输入框
           </li>
@@ -21,7 +21,7 @@
             <a-icon
               type="plus-circle"
               class="plus-circle"
-              @click="handlePlus('form_number')"
+              @click="handleAdd(ControlType.FormNumber)"
             />
             数字输入框
           </li>
@@ -29,7 +29,7 @@
             <a-icon
               type="plus-circle"
               class="plus-circle"
-              @click="handlePlus('form_select')"
+              @click="handleAdd(ControlType.FormSelect)"
             />
             下拉输入框
           </li>
@@ -73,7 +73,7 @@ import {
   Input,
   Tabs,
 } from "ant-design-vue";
-import { ControlType, ControlMap } from "client/typings/form-control-type";
+import { ControlType } from "client/typings/form-control-type";
 import ControlAdapter from "../components/control-adapter.vue";
 import {
   ControlBaseOpts,
@@ -101,6 +101,7 @@ export default {
       app_code: "",
       controls: {},
       total: 0,
+      ControlType: ControlType
     };
   },
   created() {
@@ -148,17 +149,17 @@ export default {
         console.log("app_code: ", app_code);
       }
     },
-    handlePlus(controlType) {
+    handleAdd(controlType) {
       let controlOption = {};
       switch (controlType) {
-        case ControlMap.FormTextbox:
-          controlOption = FormControlOpts[ControlMap.FormTextbox];
+        case ControlType.FormTextbox:
+          controlOption = FormControlOpts[ControlType.FormTextbox];
           break;
-        case ControlMap.FormNumber:
-          controlOption = FormControlOpts[ControlMap.FormNumber];
+        case ControlType.FormNumber:
+          controlOption = FormControlOpts[ControlType.FormNumber];
           break;
-        case ControlMap.FormSelect:
-          controlOption = FormControlOpts[ControlMap.FormSelect];
+        case ControlType.FormSelect:
+          controlOption = FormControlOpts[ControlType.FormSelect];
           break;
       }
       const option = Object.assign({}, ControlBaseOpts, controlOption);
@@ -170,9 +171,17 @@ export default {
       this.total = this.total + 1;
       return "F0000" + this.total;
     },
-    onDelete() {},
-    onCopy() {},
-    onChange() {},
+    onDelete(control) {
+      const control_code = control.control_code;
+      delete this.controls[control_code];
+      this.$forceUpdate();
+    },
+    onCopy(control) {
+      this.handleAdd(control.control_type);
+    },
+    onChange() {
+
+    },
     goBack() {
       const app_code = this.app_code;
       window.location.href = `${window.origin}/index.html#/table?app_code=${app_code}`

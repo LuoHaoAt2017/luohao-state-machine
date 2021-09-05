@@ -1,4 +1,4 @@
-import { ControlMap, ControlType } from './form-control-type';
+import { ControlType } from './form-control-type';
 
 export const ControlBaseOpts = {
   display_name: '',
@@ -10,17 +10,17 @@ export const ControlBaseOpts = {
 }
 
 export const FormControlOpts = {
-  [ControlMap.FormTextbox]: {
+  [ControlType.FormTextbox]: {
     control_type: ControlType.FormTextbox,
     display_name: '文本控件',
     default_value: '',
   },
-  [ControlMap.FormNumber]: {
+  [ControlType.FormNumber]: {
     control_type: ControlType.FormNumber,
     display_name: '数字控件',
     default_value: ''
   },
-  [ControlMap.FormSelect]: {
+  [ControlType.FormSelect]: {
     control_type: ControlType.FormSelect,
     display_name: '下拉选择控件',
     default_value: [

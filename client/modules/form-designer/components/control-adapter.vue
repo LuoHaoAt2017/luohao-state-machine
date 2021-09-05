@@ -2,7 +2,7 @@
 import FormNumber from "./form-number.vue";
 import FormTextbox from "./form-textbox.vue";
 import FormSelect from "./form-select.vue";
-import ControlTitle from './control-title.vue';
+import ControlTitle from "./control-title.vue";
 import { ControlType } from "client/typings/form-control-type";
 export default {
   name: "AdapterControl",
@@ -18,37 +18,83 @@ export default {
     },
   },
   render(h) {
+    const that = this;
     switch (this.control.control_type) {
       case ControlType.FormTextbox:
-        return h('li', {
-          staticClass: "adapter-control",
-        }, [h(ControlTitle, {
-          props: {
-            control: this.control
-          }
-        }), h(FormTextbox, {
-          staticClass: 'control-value'
-        })]);
+        return h(
+          "li",
+          {
+            staticClass: "adapter-control",
+          },
+          [
+            h(ControlTitle, {
+              props: {
+                control: this.control,
+              },
+              on: {
+                delete() {
+                  that.$emit("delete", that.control);
+                },
+                copy() {
+                  that.$emit("copy", that.control);
+                },
+              },
+            }),
+            h(FormTextbox, {
+              staticClass: "control-value",
+            }),
+          ]
+        );
       case ControlType.FormNumber:
-        return h('li', {
-          staticClass: "adapter-control",
-        }, [h(ControlTitle, {
-          props: {
-            control: this.control
-          }
-        }), h(FormNumber, {
-          staticClass: 'control-value'
-        })]);
+        return h(
+          "li",
+          {
+            staticClass: "adapter-control",
+          },
+          [
+            h(ControlTitle, {
+              props: {
+                control: this.control,
+              },
+              on: {
+                delete() {
+                  that.$emit("delete", that.control);
+                },
+                copy() {
+                  that.$emit("copy", that.control);
+                },
+              },
+            }),
+            h(FormNumber, {
+              staticClass: "control-value",
+            }),
+          ]
+        );
       case ControlType.FormSelect:
-        return h('li', {
-          staticClass: "adapter-control",
-        }, [h(ControlTitle, {
-          props: {
-            control: this.control
-          }
-        }), h(FormSelect, {
-          staticClass: 'control-value'
-        })]);
+        return h(
+          "li",
+          {
+            staticClass: "adapter-control",
+          },
+          [
+            h(ControlTitle, {
+              props: {
+                control: this.control,
+              },
+              on: {
+                delete() {
+                  that.$emit("delete", that.control);
+                },
+                copy() {
+                  that.$emit("copy", that.control);
+                },
+              },
+            }),
+            h(FormSelect, {
+              staticClass: "control-value",
+            }),
+          ]
+        );
       default:
         h("li", {
           staticClass: "adapter-control",
