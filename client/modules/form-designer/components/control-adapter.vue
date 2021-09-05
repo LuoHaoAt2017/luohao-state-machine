@@ -62,6 +62,11 @@ export default {
   width: 100%;
   position: relative;
   cursor: grab;
+  padding: 10px;
+  &:hover {
+    box-shadow: 0 0 1px 1px #ccc;
+    border-radius: 4px;
+  }
 }
 .control-ghost {
   box-shadow: 0 0 2px 2px #ccc;

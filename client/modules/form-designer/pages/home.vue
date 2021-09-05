@@ -46,11 +46,33 @@
           ></control-adapter>
         </ul>
       </div>
+      <div class="form-settings">
+        <a-tabs
+          default-active-key="1"
+          @change="onChange"
+        >
+          <a-tab-pane key="1" tab="控件属性">
+            Content of Tab Pane 1
+          </a-tab-pane>
+          <a-tab-pane key="2" tab="表单属性">
+            Content of Tab Pane 2
+          </a-tab-pane>
+        </a-tabs>
+      </div>
     </body>
   </div>
 </template>
 <script>
-import { Collapse, Button, Icon, Modal, Row, Col, Input } from "ant-design-vue";
+import {
+  Collapse,
+  Button,
+  Icon,
+  Modal,
+  Row,
+  Col,
+  Input,
+  Tabs,
+} from "ant-design-vue";
 import { ControlType, ControlMap } from "client/typings/form-control-type";
 import ControlAdapter from "../components/control-adapter.vue";
 import {
@@ -70,6 +92,8 @@ export default {
     ACol: Col,
     ARow: Row,
     ATextArea: Input.TextArea,
+    ATabs: Tabs,
+    ATabPane: Tabs.TabPane,
     ControlAdapter,
   },
   data() {
@@ -148,9 +172,24 @@ export default {
     },
     onDelete() {},
     onCopy() {},
+    onChange() {},
   },
 };
 </script>
+<style lang="less">
+.home {
+  body {
+    .form-settings {
+      .ant-tabs-nav {
+        .ant-tabs-tab {
+          width: 144px;
+          text-align: center;
+        }
+      }
+    }
+  }
+}
+</style>
 <style lang="less" scoped>
 .home {
   height: 100%;
@@ -170,9 +209,8 @@ export default {
     height: calc(100% - 54px);
     border: 1px solid #eee;
     .control-items {
-      width: 320px;
+      width: 240px;
       height: 100%;
-      border-right: 1px solid #eee;
       h3 {
         height: 54px;
         line-height: 54px;
@@ -188,9 +226,12 @@ export default {
       }
     }
     .form-controls {
-      width: 100%;
       height: 100%;
       padding: 0 12px;
+      flex-basis: 320px;
+      flex-grow: 1;
+      border-left: 1px solid #eee;
+      border-right: 1px solid #eee;
       .control-list {
         padding: 10px;
         li {
@@ -205,6 +246,10 @@ export default {
         padding: 0 10px;
         border-bottom: 1px solid #eee;
       }
+    }
+    .form-settings {
+      width: 320px;
+      height: 100%;
     }
   }
 }
