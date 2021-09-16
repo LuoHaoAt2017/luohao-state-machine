@@ -1,24 +1,25 @@
-import Vue from 'vue';
-import VueRouter from 'vue-router';
-
-Vue.use(VueRouter);
-
-export default new VueRouter({
+const router = {
   mode: 'hash',
   routes: [
     {
+      el: '#app',
       path: '/home',
-      name: 'home',
-      component: () => import('../pages/home.vue')
+      template: 'pages/home/index.html',
+      script: 'pages/home/index.js',
+      style: 'pages/home/index.css'
     },
     {
-      path: '/table',
-      name: 'tableview',
-      component: () => import('../pages/table.vue')
+      el: '#app',
+      path: '/about',
+      template: 'pages/about/index.html',
+      script: 'pages/about/index.js',
+      style: 'pages/about/index.css'
     },
     {
       path: '/',
       redirect: '/home'
     }
   ]
-});
+}
+
+export default router;
