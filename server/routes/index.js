@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const application = require('../controllers/application');
+const schema = require('../controllers/schema');
 // const classroom = require('../controllers/classroom');
 // const course = require('../controllers/course');
 // const student = require('../controllers/student');
@@ -13,6 +14,11 @@ router.put('/api/application', application.create);
 router.delete('/api/application', application.remove);
 router.post('/api/application', application.update);
 router.get('/api/application', application.search);
+
+router.put('/api/schema', schema.create);
+router.delete('/api/schema', schema.remove);
+router.post('/api/schema', schema.update);
+router.get('/api/schema', schema.search);
 
 // router.put('/classroom', classroom.create);
 // router.delete('/classroom', classroom.delete);

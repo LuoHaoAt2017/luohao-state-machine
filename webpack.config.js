@@ -1,9 +1,9 @@
-const path = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const CopyWebpackPlugin = require("copy-webpack-plugin");
-const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 module.exports = {
-  entry: "./client/main.js",
+  entry: './client/main.js',
   output: {
     filename: "[name].js",
     path: path.resolve(__dirname, "dist"),
@@ -30,28 +30,27 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: path.resolve("./client/public/index.html"),
-      favicon: path.resolve("./client/public/favicon.ico"),
-      title: "低代码产品",
-      filename: "index.html",
+      template: path.resolve('./public/index.html'),
+      favicon: path.resolve('./public/favicon.ico'),
+      filename: 'index.html',
     }),
     new CopyWebpackPlugin({
       patterns: [
         {
-          from: path.resolve(__dirname, "./client/assets"),
-          to: "./assets",
+          from: 'client/assets',
+          to: 'assets'
         },
         {
-          from: path.resolve(__dirname, "./client/pages"),
-          to: "./pages",
-        },
-      ],
+          from: 'client/pages',
+          to: 'pages'
+        }
+      ]
     }),
     new CleanWebpackPlugin(),
   ],
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "src"),
+      '@': path.resolve(__dirname, 'src')
     },
   },
 };

@@ -4,6 +4,7 @@ const { merge } = require('webpack-merge');
 module.exports = merge(config, {
   mode: 'development',
   devServer: {
-    port: 9090
+    port: 9090,
+    watch: true,
   }
 });

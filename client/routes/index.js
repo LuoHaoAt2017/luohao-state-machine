@@ -2,18 +2,20 @@ const router = {
   mode: 'hash',
   routes: [
     {
-      el: '#app',
+      name: 'home',
       path: '/home',
-      template: 'pages/home/index.html',
+      component: 'pages/home/index.html',
+      style: 'pages/home/index.css',
       script: 'pages/home/index.js',
-      style: 'pages/home/index.css'
+      el: '#app'
     },
     {
-      el: '#app',
+      name: 'about',
       path: '/about',
-      template: 'pages/about/index.html',
+      component: 'pages/about/index.html',
+      style: 'pages/about/index.css',
       script: 'pages/about/index.js',
-      style: 'pages/about/index.css'
+      el: '#app'
     },
     {
       path: '/',
