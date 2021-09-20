@@ -6,7 +6,7 @@
     "build": "webpack --progress --config ./webpack.config.prod.js",
     "start": "webpack-dev-server --config ./webpack.config.dev.js",
     "test": "jest --color",
-    "debugger": "node --inspect-brk node_modules/.bin/jest --runInBand",
+    "debugger": "node --inspect-brk node_modules/jest/bin/jest.js --runInBand",
     "serve": "nodemon server/index.js"
   },
   "devDependencies": {

@@ -16,10 +16,9 @@ describe('计算规则解析器测试', () => {
   });
 
   test('计算后缀表达式', () => {
-    const expression = '212+345+4*+*+';
-    debugger;
+    const expression = '2 + (1 + 2) *(3 + (4 + 5) * 4)';
     const expected = calculator.calcExpression(expression);
-    expect(expected).toBe(146);
+    expect(expected).toBe(119);
   });
 
   // test('计算规则测试', () => {

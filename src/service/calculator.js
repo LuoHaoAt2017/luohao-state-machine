@@ -47,18 +47,17 @@ Calculator.prototype.calcExpression = function (formula, context) {
   // formula = '{F00001} + {F00002}';
   // context = { F00001: 1, F00002: 2};
   // 用于判断表达式是否包含函数计算
-  if (funcReg.test(formula)) {
-    // 对表达式中的函数求值，并用属性替换
-    formula = this.calculateFunc(formula, context);
-  }
+  // if (funcReg.test(formula)) {
+  //   // 对表达式中的函数求值，并用属性替换
+  //   formula = this.calculateFunc(formula, context);
+  // }
   const stack = new Stack();
   const items = this.parseExpression(formula);
   debugger;
   for (let i = 0; i < items.length; i++) {
     if (!Operators.test(items[i])) {
       // 非操作符，数值直接进栈
-      // stack.push(this.getFieldValue(items[i], context));
-      stack.push(items[i]);
+      stack.push(this.getFieldValue(items[i], context));
     } else {
       let val1, val2;
       if (UnaryOperator.includes(items[i])) {
@@ -191,6 +190,18 @@ Calculator.prototype.getFieldValue = function(field, context) {
   if (field.startsWith('{') && field.endsWith('}')) {
     field = field.slice(1, -1);
     return context[field];
+  } else if (field === 'true') {
+    return true;
+  } else if (field === 'false') {
+    return false;
+  } else if (isNumber(field)) {
+    return Number(field);
+  } else {
+    return field;
   }
-  return '';
+}
+
+function isNumber(value) {
+  value = Number(value);
+  return Object.prototype.toString.call(value).indexOf('Number') > -1;
 }
