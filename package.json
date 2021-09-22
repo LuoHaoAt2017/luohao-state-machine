@@ -5,7 +5,7 @@
   "scripts": {
     "build": "webpack --progress --config ./webpack.config.prod.js",
     "start": "webpack-dev-server --config ./webpack.config.dev.js",
-    "test": "jest --color",
+    "test": "jest --color --watch",
     "debugger": "node --inspect-brk node_modules/jest/bin/jest.js --runInBand",
     "serve": "nodemon server/index.js"
   },
@@ -34,6 +34,7 @@
   },
   "dependencies": {
     "express": "^4.17.1",
+    "jquery": "^3.6.0",
     "js-cookie": "^3.0.1",
     "lodash": "^4.17.21",
     "moment": "^2.29.1",

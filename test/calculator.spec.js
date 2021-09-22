@@ -1,5 +1,4 @@
 import Calculator from '@/service/calculator';
-import store from '@mocks/store';
 
 describe('计算规则解析器测试', () => {
 
