@@ -5,6 +5,5 @@ module.exports = merge(config, {
   mode: 'development',
   devServer: {
     port: 9090,
-    watch: true,
   }
 });

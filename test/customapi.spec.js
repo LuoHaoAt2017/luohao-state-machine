@@ -1,4 +1,4 @@
-import Customcode from '@/service/customcode';
+import Customapis from '@/service/customapis';
 
 const javascript = `$.JForm = {
   BeforeSubmit() {
@@ -12,13 +12,13 @@ const javascript = `$.JForm = {
 
 describe('构造自定义函数对象', () => {
 
-  const customcode = new Customcode({}, javascript);
+  const customapis = new Customapis({}, javascript);
 
   test('BeforeSubmit 自定义代码测试', () => {
-    expect(customcode.BeforeSubmit()).toBe('BeforeSubmit');
+    expect(customapis.BeforeSubmit()).toBe('BeforeSubmit');
   });
 
   test('AfterSubmit 自定义代码测试', () => {
-    expect(customcode.AfterSubmit()).toBe('AfterSubmit');
+    expect(customapis.AfterSubmit()).toBe('AfterSubmit');
   });
 });

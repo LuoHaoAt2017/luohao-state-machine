@@ -2,12 +2,12 @@ import developer from '../utils/developer';
 import jquery from 'jquery';
 
 // 自定义代码
-export default function Customcode(formInstance, javascript) {
+export default function CustomApis(formInstance, javascript) {
   this.$form = formInstance;
   this.init(javascript);
 }
 
-Customcode.prototype.init = function(javascript) {
+CustomApis.prototype.init = function(javascript) {
   // 动态创建函数
   javascript = this.format(javascript);
   const customApiFunc = new Function('developer', 'jquery', javascript);
@@ -24,9 +24,12 @@ Customcode.prototype.init = function(javascript) {
   if (customApi.AfterSubmit) {
     this.AfterSubmit = customApi.AfterSubmit.bind(this);
   }
+  this.$form.batchAllField((dataField, control) => {
+    this[dataField] = new CustomApiProxy(dataField, control);
+  });
 }
 
-Customcode.prototype.format = function(javascript) {
+CustomApis.prototype.format = function(javascript) {
   // $.IOpenLink => developer.IOpenLink
   javascript = javascript.replace(/\$.I/g, 'developer.I');
   javascript = `try {
@@ -39,4 +42,8 @@ Customcode.prototype.format = function(javascript) {
     return $.JForm; // 返回定义代码对象
   }`;
   return javascript;
+}
+
+function CustomApiProxy(dataField, control) {
+
 }
