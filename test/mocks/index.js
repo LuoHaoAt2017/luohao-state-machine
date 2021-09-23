@@ -8,9 +8,9 @@ export default {
         value: ''
       },
       opts: {
-        controlKey: ControlTypes.FormTextbox,
+        controlKey: ControlTypes.FormNumber,
         dataField: 'F00001',
-        displayName: '文本控件1'
+        displayName: '数字控件1'
       }
     },
     F00002: {
@@ -19,9 +19,9 @@ export default {
         value: ''
       },
       opts: {
-        controlKey: ControlTypes.FormTextbox,
+        controlKey: ControlTypes.FormNumber,
         dataField: 'F00002',
-        displayName: '文本控件2'
+        displayName: '数字控件2'
       }
     },
     F00003: {
@@ -32,9 +32,9 @@ export default {
         computeRuleFields: ['F00001', 'F00002']
       },
       opts: {
-        controlKey: ControlTypes.FormTextbox,
+        controlKey: ControlTypes.FormNumber,
         dataField: 'F00003',
-        displayName: '文本控件3'
+        displayName: '数字控件3'
       }
     }
   }

@@ -1,5 +1,3 @@
-
-
 $(function() {
   function Router() {
     this.mode = 'hash';
@@ -20,13 +18,29 @@ $(function() {
   Router.prototype.start = function(router) {
     this.mode = router.mode;
     this.routes = router.routes;
-    this.push(this.routes[0]);
+    window.onhashchange = () => {
+      this.hash();
+    }
+    window.onload = () => {
+      this.hash();
+    }
+    window.location.hash = '#/';
   }
   
-  Router.prototype.push = function(route) {
-    route = this.match(route);
-    this.history.push(route);
-    this.load(route);
+  Router.prototype.push = function(param) {
+    let hash = '';
+    if (param && param.params) {
+      Object.keys(param.params).forEach(function(key) {
+        hash += key + '=' + param.params[key] + '&';
+      });
+    }
+    const route = this.match(param);
+    if (hash) {
+      hash = route.path + '?' + hash.substring(0, hash.length - 1);
+    } else {
+      hash = route.path;
+    }
+    window.location.hash = hash;
   }
   
   Router.prototype.pop = function() {
@@ -46,7 +60,35 @@ $(function() {
     });
   }
 
+  Router.prototype.hash = function() {
+    // http://localhost/index.html/#/home?x=123&y=456;
+    const hash = window.location.hash;
+    let path;
+    const pIndex = hash.indexOf('#');
+    const qIndex = hash.indexOf('?');
+    if (qIndex === -1) {
+      path = hash.substring(pIndex + 1, hash.length);
+    } else {
+      path = hash.substring(pIndex + 1, qIndex);
+    }
+    const route = this.match(path);
+    this.history.push(route);
+    this.load(route);
+  }
+
   Router.prototype.match = function(route) {
+    if (typeof route === "string") {
+      const target = this.routes.find(elem => elem.path === route);
+      if (target) {
+        if (Object.prototype.hasOwnProperty.call(target, 'redirect')) {
+          return this.routes.find(elem => elem.path === target.redirect);
+        } else {
+          return target;
+        }
+      } else {
+        return this.errors[0];
+      }
+    }
     if (Object.prototype.hasOwnProperty.call(route, 'name')) {
       const target = this.routes.find(elem => elem.name === route.name);
       if (target) {

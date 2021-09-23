@@ -1,11 +1,15 @@
 import Dispatcher from './dispatcher';
 import Calculator from './calculator';
+import Customcode from './customcode';
 import { factoryBuilder } from '../control';
-const formMap = new Map();
+import FormDetail from '../models/index';
+const Namespace = ['Form', 'ViewModel'];
+const formCache = new Map();
 
 function FormLogic(options) {
   this.$dispatcher = new Dispatcher(this);
   this.$calculator = new Calculator(this);
+  this.$customcode = new Customcode(this);
   registerControls(this, options);
 }
 
@@ -21,11 +25,12 @@ function registerControls(form, options) {
   }
 }
 
-function newInstance(options) {
-  const form = new FormLogic(options);
-  formMap.set(options.ObjectId, form);
+export function addModule(store, formData) {
+  const objectId = formData.objectId;
+  store.registerModule([...Namespace, objectId], FormDetail);
 }
 
-export default {
-  newInstance
+export function newInstance(options) {
+  const form = new FormLogic(options);
+  formCache.set(options.ObjectId, form);
 }
